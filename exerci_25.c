@@ -2,6 +2,7 @@
 #include <stdlib.h>
 //uma funcao que recebe uma string e desloca as letras uma posicao pra frente e a ultima lera para a primeira posicao
 
+int quant_tamanho(char* palavra);
 void pula_casa(char* palavra);
 
 int main(){
@@ -12,19 +13,22 @@ int main(){
     return 0;
 }
 
+int quant_tamanho(char* palavra){
+    int aux = 0;
+    while (palavra[aux] != '\0')
+        aux++;
+
+    return aux;
+}
+
 void pula_casa(char* palavra){
-    int cont=0;
-    char aux, aux2;
-    for (char* i = palavra; *i != '\0'; i++, cont++)
-    {
-        if (palavra[cont + 1] == '\0')
-        {
-            
-        }
-        aux = palavra[cont + 1];
-        aux2 = 
-        palavra[cont + 1] = palavra[cont];
-        aux2 = aux;
-    }
+    int tamanho = quant_tamanho(palavra);
     
+    char ultima_letra = palavra[tamanho - 1]; // logica: guardar a ultima letra e passar cada letra pra frente e depois colocar a ultima no começo
+    for (int i = tamanho - 1; i > 0; i--)
+    {
+        palavra[i] = palavra[i - 1];
+    }
+    palavra[0] = ultima_letra;
+    printf("%s", palavra);
 }
